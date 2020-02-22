@@ -50,7 +50,7 @@ void printBanner( void )
 }
 
 struct Settings settings;
-
+using namespace std;
 int main(int argc, char** argv) {
 
     std::string chain="NULL";

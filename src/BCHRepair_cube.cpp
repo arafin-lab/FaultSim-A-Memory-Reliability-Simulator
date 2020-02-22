@@ -13,7 +13,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include "BCHRepair_cube.hh"
 #include "DRAMDomain.hh"
 #include "Settings.hh"
-
+#include <iostream>
+using namespace std;
 extern struct Settings settings;
 
 BCHRepair_cube::BCHRepair_cube( string name, int n_correct, int n_detect, uint64_t data_block_bits ) : RepairScheme( name )
@@ -68,7 +69,7 @@ void BCHRepair_cube::repair( FaultDomain *fd, uint64_t &n_undetectable, uint64_t
 			if(frTemp.touched < frTemp.max_faults)
 			{
 				if( settings.debug ) {
-					cout << m_name << ": outer " << frTemp.toString() << "\n";
+					std::cout << m_name << ": outer " << frTemp.toString() << "\n";
 				}
 
 				bit_shift=m_log_block_bits;	//ECC every 64 byte i.e 512 bit granularity
@@ -88,13 +89,13 @@ void BCHRepair_cube::repair( FaultDomain *fd, uint64_t &n_undetectable, uint64_t
 						FaultRange *fr1 = (*itRange1);
 
 						if( settings.debug ) {
-							cout << m_name << ": inner " << fr1->toString() << " bit " << ii << "\n";
+							std::cout << m_name << ": inner " << fr1->toString() << " bit " << ii << "\n";
 						}
 
 						if( fr1->touched < fr1->max_faults)
 						{
 							if(frTemp.intersects(fr1)) {
-								if( settings.debug ) cout << m_name << ": INTERSECT " << n_intersections << "\n";
+								if( settings.debug ) std::cout << m_name << ": INTERSECT " << n_intersections << "\n";
 
 								n_intersections++;
 
@@ -115,7 +116,7 @@ void BCHRepair_cube::repair( FaultDomain *fd, uint64_t &n_undetectable, uint64_t
 								// immediately move on to the next location
 								break;
 							} else {
-								if( settings.debug ) cout << m_name << ": NONE " << n_intersections << "\n";
+								if( settings.debug ) std::cout << m_name << ": NONE " << n_intersections << "\n";
 							}
 						}
 					}

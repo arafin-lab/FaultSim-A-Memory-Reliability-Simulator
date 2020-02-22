@@ -14,7 +14,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #define BCHREPAIR_HH_
 
 #include "RepairScheme.hh"
-
+#include <iostream>
 class BCHRepair : public RepairScheme
 {
 public:
